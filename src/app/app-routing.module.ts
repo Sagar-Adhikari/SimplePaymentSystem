@@ -1,3 +1,4 @@
+import { LoginComponent } from './admin/components/login/login.component';
 import { PaymentListComponent } from "./payment-list/payment-list.component";
 import { AccountListComponent } from "./account-list/account-list.component";
 import { NgModule } from "@angular/core";
@@ -8,10 +9,7 @@ import { PaymentComponent } from "./payment/payment.component";
 
 const routes: Routes = [
   { path: "admin", loadChildren: "./admin/admin.module#AdminModule" },
-  {
-    path: "",
-    component: AccountComponent
-  },
+
   {
     path: "account",
     component: AccountComponent

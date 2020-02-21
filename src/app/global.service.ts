@@ -1,20 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
-interface ILayout{
-  pageTitle: string,
-  allowFooter: boolean
+interface ILayout {
+  pageTitle: string;
+  allowFooter: boolean;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class GlobalService {
+  // isloggededIn = false;
+
   private pageTitleSource = new Subject<ILayout>();
   pageTitle$ = this.pageTitleSource.asObservable();
 
-  constructor() { }
+  constructor() {}
 
-  setLayout(layout: ILayout){
+  setLayout(layout: ILayout) {
     setTimeout(() => {
       this.pageTitleSource.next(layout);
     });
