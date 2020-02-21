@@ -1,0 +1,88 @@
+<div   style="display: flex;margin-top: 2px;">
+  <div class="item">
+      <button mat-raised-button color="primary" routerLink="/payment">
+         Create Payment
+      </button>
+  </div>
+</div>
+<table mat-table [dataSource]="dataSource" matSort aria-label="Elements"  >
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 150px;">
+       Id
+    </th>
+    <td mat-cell *matCellDef="let row" class="mat-cell-center">
+        {{row.id}}
+    </td>
+</ng-container>
+
+  <ng-container matColumnDef="sourceAccountNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 150px;">
+          Source Account Number
+      </th>
+      <td mat-cell *matCellDef="let row" class="mat-cell-center">
+          {{row.sourceAccountNumber}}
+      </td>
+  </ng-container>
+
+  <ng-container matColumnDef="destinationAccountNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 150px;">
+      Destination Account Number
+      </th>
+      <td mat-cell *matCellDef="let row" class="mat-cell-center">
+          {{row.destinationAccountNumber}}
+      </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+       Amount
+      </th>
+      <td mat-cell *matCellDef="let row" class="mat-cell-center">
+          {{row.amount}}
+      </td>
+  </ng-container>
+
+  <ng-container matColumnDef="currencyCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+       Currency Code
+      </th>
+      <td mat-cell *matCellDef="let row" class="mat-cell-center">
+          {{row.currencyCode}}
+      </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="paymentDescription">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Payment Description
+      </th>
+      <td mat-cell *matCellDef="let row" class="mat-cell-center">
+          {{row.paymentDescription}}
+      </td>
+  </ng-container>
+
+  // <ng-container matColumnDef="status">
+  //     <th mat-header-cell *matHeaderCellDef mat-sort-header >
+  //         Status
+  //     </th>
+  //     <td mat-cell *matCellDef="let row" class="mat-cell-center">
+  //         {{row.status}}
+  //     </td>
+  // </ng-container>
+
+  <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+        Action
+      </th>
+      <td mat-cell *matCellDef="let row">
+
+        <button mat-icon-button [routerLink]="['/payment/'+row.id]"><mat-icon color="primary"(click)="onDetailClicked()">details</mat-icon></button>
+      </td>
+  </ng-container>
+
+     // [routerLink]="['/admin/add-user', row.id]"
+  <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true" style="background: rosybrow !important;">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+</table>

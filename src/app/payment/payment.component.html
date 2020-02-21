@@ -1,1 +1,118 @@
-<p>payment works!</p>
+<div class="body-container" style="height: 100%;">
+  <form
+    class="account-form"
+    novalidate
+    [formGroup]="paymentForm"
+    (ngSubmit)="onSubmit(paymentForm)"
+  >
+    <strong>Payment System </strong>
+    <div class="flex-row">
+      <mat-form-field class="mat-form-field">
+        <input
+          type="number"
+          matInput
+          placeholder="Amount"
+          autocomplete="off"
+          formControlName="amount"
+          autofocus
+          required
+        />
+        <mat-error>Amount is not in correct format.</mat-error>
+        <mat-hint>Enter Amount.</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex-row">
+      <mat-form-field class="item">
+        <mat-label>Currency</mat-label>
+        <mat-select formControlName="currencyCode" required>
+          <mat-option *ngFor="let list of currencyList" [value]="list">
+            {{ list }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+     <div class="flex-row">
+      <mat-form-field class="item">
+        <mat-label>Destination Account Number</mat-label>
+        <mat-select formControlName="destinationAccountNumber" required>
+          <mat-option *ngFor="let account of destinationAccountList" [value]="account">
+            {{ account }}
+          </mat-option>
+        </mat-select>
+        <mat-hint>select the account  Number.</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex-row">
+      <mat-form-field class="mat-form-field">
+        <input
+          matInput
+          placeholder="Payment Description"
+          autocomplete="off"
+          formControlName="paymentDescription"
+        />
+        <mat-error>Description is not in correct format.</mat-error>
+        <mat-hint>Enter Description of Account.</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex-row">
+      <mat-form-field class="item">
+        <mat-label>Source Account Number</mat-label>
+        <mat-select formControlName="sourceAccountNumber" required>
+          <mat-option *ngFor="let account of sourceAccountList" [value]="account">
+            {{ account }}
+          </mat-option>
+        </mat-select>
+        <mat-hint>select the account  Number.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <!-- </div> -->
+
+    <!-- <div class="flex-row" *ngIf="!userId">
+          <mat-form-field class="item">
+              <input
+              matInput
+              placeholder="Password"
+              autocomplete="off"
+              formControlName = "password"
+              [type]="hidePassword ? 'password' : 'text'"
+              (blur)="hidePassword= true"
+              />
+              <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+              hidePassword? 'visibility' : 'visibility_off'
+              }}</mat-icon>
+              <mat-error>Password length is not valid (6 to 15).</mat-error>
+              <mat-hint>Enter password.</mat-hint>
+          </mat-form-field>
+     </div> -->
+    <!-- <div class="flex-row">
+          <mat-form-field class="item">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="roleId">
+                  <mat-option  *ngFor="let role of roleList"
+                      [value]="role.id">
+                      {{role.name}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div>
+      <div class="flex-row">
+          <mat-form-field class="item">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                  <mat-option *ngFor="let status of statusList"
+                      [value]="status.id">
+                      {{status.name}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div> -->
+    <div style="display: flex; ">
+      <div class="item">
+        <button mat-raised-button color="primary" style="width: 100px; ">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

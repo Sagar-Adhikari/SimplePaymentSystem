@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api:'http://'
+  api:'http://localhost:8080/payments-system/'
 };

@@ -12,17 +12,25 @@ export class AccountService {
 
   public addAccountDetails(accountDescription: string, accountHolderName: string, accountHolderPhoneNumber: string, accountNumber: number): Observable<any> {
     const header = new HttpHeaders({ 'ContentType': 'application/json' });
-    const url = environment.api + '';
+    const url = environment.api + 'account/add';
     return this.http.post(url, { accountDescription, accountHolderName, accountHolderPhoneNumber, accountNumber }, { headers: header })
       .pipe(
         catchError(this.handleError)
       );
   }
+  public getAllAccount():Observable<any>{
+    const header = new HttpHeaders({ 'ContentType': 'application/json' });
+    const url = environment.api + `account`;
+    return this.http.get(url, { headers: header })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
-  public editAccountDetailsById(id: string): Observable<any> {
+  public getAccountDetailsById(id: string): Observable<any> {
     const header = new HttpHeaders({ 'ContentType': 'application/json' });
     const url = environment.api + `account/${id}`;
-    return this.http.put(url, { headers: header })
+    return this.http.get(url, { headers: header })
       .pipe(
         catchError(this.handleError)
       );

@@ -4,20 +4,34 @@
 
 <mat-toolbar color="primary" class="app-toolbar">
     <div style="display: flex; flex-direction: row; width: 100%;">
-  
-      <img class="logo" [src]="'assets/nta-logo.png'" alt="logo" (click)="isLoggedIn? drawer.toggle(): undefined" />
-  
+
+      <img class="logo" [src]="'../assets/payment.png'" alt="logo" (click)="isClickedMenu? drawer.toggle(): undefined" />
+
       <div class="toolbar-row" >
-        <span style="font-size: 22px;">नेपाल दूरसञ्चार प्राधिकरण</span>
-        <span style="font-size: 15px;">Nepal Telecommunications Authority</span>
+        <span style="font-size: 22px;">Simple Payment System</span>
+        <span style="font-size: 15px;">Simple Payment System</span>
       </div>
-      <!-- <div class="toolbar-row">{{pageTitle}}</div> -->
-      <div class="toolbar-row toolbar-user" >
+
+
+      <div class="toolbar-row" style="display: inline;">
+
+        <span>
+          <strong>Simple-Payments</strong>
+        </span>
+        <span>
+          - {{pageTitle}}
+        </span>
+
+
+
+
+      </div>
+
+      <div class="toolbar-row toolbar-login" >
         <button mat-button  (click)="login()">Login</button>
-        <!-- <button mat-button [matMenuTriggerFor]="menu" >{{email}}</button> -->
+
         <mat-menu #menu="matMenu">
-          <!-- <button mat-menu-item (click)="changePassword()">Change Password</button>
-          <button mat-menu-item (click)="logout()" >Logout</button> -->
+
         </mat-menu>
       </div>
     </div>
@@ -26,31 +40,27 @@
 
   <mat-sidenav-container fullScreen class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewPort="true" [attr.role]="smallScreen ? 'dialog' : 'navigation'"
-      [mode]="smallScreen? 'over': 'side'" [opened]="isLoggedIn">
-      <!-- <mat-nav-list>
-        <a *ngIf="roleId==1"mat-list-item routerLink="/admin/users">User List</a> 
-        <a *ngIf="roleId==1" mat-list-item routerLink="/admin/clear">Clear Records</a> 
+      [mode]="smallScreen? 'over': 'side'" [opened]="true">
+      <mat-nav-list>
+        <a  mat-list-item routerLink="/account-list">Account </a>
+        <mat-divider ></mat-divider>
+        <a   mat-list-item routerLink="/currency">Currency</a>
       </mat-nav-list>
       <mat-divider ></mat-divider>
       <mat-nav-list>
-        <a mat-list-item routerLink="/admin/change-password">Change Password</a>
-        <a  mat-list-item routerLink="/admin/test-count">Test Count</a>
-        <a  mat-list-item routerLink="/admin/chart">Speed Charts</a>      
-        <a  mat-list-item routerLink="/admin/table">Test List</a>
+        <a mat-list-item routerLink="/payment-list">Payment Stystem</a>
+
       </mat-nav-list>
       <mat-divider></mat-divider>
-      <mat-nav-list>
-        <a  mat-list-item routerLink="/speed-test">Speed Test</a>
-      </mat-nav-list> -->
+
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content" >
       <router-outlet></router-outlet>
       <div  class="app-footer">
         <span>Developed By</span>
-        <span>Nirekha Dot Com Pvt. Ltd</span>
+        <span>Sagar Adhikari</span>
         <span style="font-size: 10px;">ph. No: 9843650962</span>
-        <span style="font-size: 10px;">url: www.nirekha.com</span>
-        <span style="font-size: 10px;">email: teamnirekha@gmail.com</span>
+        <span style="font-size: 10px;">email: sgradhikari48@gmail.com</span>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

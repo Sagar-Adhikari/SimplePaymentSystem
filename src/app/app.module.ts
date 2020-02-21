@@ -16,12 +16,18 @@ import {
 } from '@angular/material';
 import { CurrencyComponent } from './currency/currency.component';
 import { PaymentComponent } from './payment/payment.component';
+import { AccountListComponent } from './account-list/account-list.component';
+import { PaymentListComponent } from './payment-list/payment-list.component';
+import { LoginComponent } from './admin/components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     AccountComponent,
     CurrencyComponent,
-    PaymentComponent
+    PaymentComponent,
+    AccountListComponent,
+    PaymentListComponent,
+    // LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,11 @@ import { PaymentComponent } from './payment/payment.component';
     MatSidenavModule,
     MatIconModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatSortModule,
+     MatPaginatorModule,
+     MatSelectModule
 
 
 

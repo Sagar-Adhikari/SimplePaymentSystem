@@ -1,1 +1,12 @@
-<p>currency works!</p>
+<div class="body-container">
+  <div style="display: flex;flex-direction: column;margin: auto;">
+    <mat-form-field class="item">
+      <mat-label>Currency</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let list of lists" [value]="list">
+          {{ list }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
