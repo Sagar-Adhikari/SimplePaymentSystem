@@ -1,6 +1,7 @@
 import { PaymentService } from "./../services/payment.service";
 import { Component, OnInit } from "@angular/core";
 import { GlobalService } from "../global.service";
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: "app-payment-list",
@@ -21,7 +22,8 @@ export class PaymentListComponent implements OnInit {
   ];
   constructor(
     private paymentService: PaymentService,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private snackBar:MatSnackBar
   ) {
     this.globalService.setLayout({
       allowFooter: true,
@@ -40,9 +42,10 @@ export class PaymentListComponent implements OnInit {
     });
   }
   onDetailClicked() {
-    this.globalService.setLayout({
-      allowFooter: true,
-      pageTitle: "Detail Of  Payment By Id"
-    });
+
+
+      this.snackBar.open("details of each list by Id", null, { duration: 2000 });
+
+
   }
 }

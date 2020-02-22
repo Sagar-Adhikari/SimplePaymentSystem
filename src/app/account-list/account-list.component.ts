@@ -1,6 +1,7 @@
 import { AccountService } from "./../services/account.service";
 import { Component, OnInit } from "@angular/core";
-import { GlobalService } from '../global.service';
+import { GlobalService } from "../global.service";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: "app-account-list",
@@ -10,19 +11,22 @@ import { GlobalService } from '../global.service';
 export class AccountListComponent implements OnInit {
   dataSource: any = [];
   displayColumns = [
-    'id',
+    "id",
     "accountDescription",
     "accountHolderName",
     "accountHolderPhoneNumber",
     "accountNumber",
     "action"
   ];
-  constructor(private accountService: AccountService,
-    private globalService:GlobalService
-    ) {
-    this.globalService.setLayout({ allowFooter: true, pageTitle: 'List Of Accounts' });
-
-
+  constructor(
+    private accountService: AccountService,
+    private globalService: GlobalService,
+    private snackBar: MatSnackBar
+  ) {
+    this.globalService.setLayout({
+      allowFooter: true,
+      pageTitle: "List Of Accounts"
+    });
   }
 
   ngOnInit() {
@@ -31,8 +35,12 @@ export class AccountListComponent implements OnInit {
 
   loadData() {
     this.accountService.getAllAccount().subscribe((x: any) => {
-      console.log('get all accounts',x);
+      console.log("get all accounts", x);
       this.dataSource = x;
     });
+  }
+
+  onDetailClicked() {
+    this.snackBar.open("details of each list by Id", null, { duration: 2000 });
   }
 }

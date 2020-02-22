@@ -1,5 +1,5 @@
 import { Router } from "@angular/router";
-import { Component, ɵCodegenComponentFactoryResolver } from "@angular/core";
+import { Component } from "@angular/core";
 import { GlobalService } from "./global.service";
 import { RegisterService } from "./admin/services/register.service";
 
@@ -11,6 +11,7 @@ import { RegisterService } from "./admin/services/register.service";
 export class AppComponent {
   private _roleId: number = 0;
   isLoggedIn = false;
+  email: string;
 
   title = "simplePaymentSystem";
   isClickedMenu: boolean = true;
@@ -27,28 +28,38 @@ export class AppComponent {
     private router: Router,
     private registerService: RegisterService
   ) {
+    this.isLoggedInUser();
+    // const arr = [];
+    // arr.push(this.registerService.getUser());
+    // console.log("arrd", arr);
+    // this.email = arr[0][0];
+    // if(this.registerService.isLoggedIn()){
+    //    this.email = arr[0][0];
+    // };
+
     this.globalService.pageTitle$.subscribe((x: any) => {
       console.log("page title", x);
       this.pageTitle = x.pageTitle;
       this.allowFooter = x.allowFooter;
     });
-
-    this.registerService.currentUser$.subscribe((x: any) => {
-      console.log("subscribed", x);
-      if(x){
-      this.isLoggedIn=true;
-      }else{
-        this.isLoggedIn=false
-      }
-    });
-
-    this.registerService.loggedIn$.subscribe((x: any) => {
-      console.log("loggedin", x);
-      this.isLoggedIn=true;
-    });
   }
 
   login() {
+    // this.router.navigate(["/admin/login"]);
+    if (!this.registerService.isLoggedIn) {
+      this.router.navigate(["/account-list"]);
+      this.isLoggedIn = true;
+    } else {
+      this.router.navigate(["/admin/login"]);
+    }
+  }
+  logout() {
+    this.registerService.clearUser();
     this.router.navigate(["/admin/login"]);
+  }
+
+  isLoggedInUser() {
+    const user = localStorage.getItem("ni-user");
+    console.log("localstorage", user);
   }
 }

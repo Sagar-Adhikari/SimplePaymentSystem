@@ -34,7 +34,7 @@
      <div class="flex-row">
       <mat-form-field class="item">
         <mat-label>Destination Account Number</mat-label>
-        <mat-select formControlName="destinationAccountNumber" required>
+        <mat-select formControlName="destinationAccountNumber" (selectionChange)="onDestinationAccountNumberChanged($event)" required>
           <mat-option *ngFor="let account of destinationAccountList" [value]="account">
             {{ account }}
           </mat-option>
@@ -57,7 +57,7 @@
     <div class="flex-row">
       <mat-form-field class="item">
         <mat-label>Source Account Number</mat-label>
-        <mat-select formControlName="sourceAccountNumber" required>
+        <mat-select formControlName="sourceAccountNumber" (selectionChange)="onSourceAccountNumberChanged($event)" required>
           <mat-option *ngFor="let account of sourceAccountList" [value]="account">
             {{ account }}
           </mat-option>

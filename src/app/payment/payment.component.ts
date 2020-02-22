@@ -8,7 +8,7 @@ import {
   Validators,
   FormBuilder
 } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ComponentFactoryResolver } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GlobalService } from "../global.service";
 
@@ -21,6 +21,7 @@ export class PaymentComponent implements OnInit {
   paymentForm: FormGroup;
   private paymentId = undefined;
   private currencyList = [];
+  private accountList = [];
   private sourceAccountList = [];
   private destinationAccountList = [];
   arr = [];
@@ -134,14 +135,47 @@ export class PaymentComponent implements OnInit {
     this.accountService.getAllAccount().subscribe((x: any) => {
       console.log("accounts", x);
       x.forEach(element => {
-        console.log("element", element.accountNumber);
-        this.destinationAccountList.push(element.accountNumber);
-        this.sourceAccountList.push(element.accountNumber);
-        // this.arr.push(this.destinationAccountList);
-        // console.log("dest Account Number", this.arr);
+        this.accountList.push(element.accountNumber);
       });
+      this.sourceAccountList = [...this.accountList];
+      this.destinationAccountList = [...this.accountList];
+      // x.forEach(element => {
+      //   console.log("element", element.accountNumber);
+      //   this.destinationAccountList.push(element.accountNumber);
+      //   console.log("Destination arr", this.destinationAccountList);
+      //   this.sourceAccountList.push(element.accountNumber);
+      //   console.log("source arr", this.sourceAccountList);
+      //   // for(let i=0;i<=element.destinationAccountList.length-1;i++){
+
+      //   // }
+
+      //   // this.arr.push(this.destinationAccountList);
+      //   // console.log("dest Account Number", this.arr);
+      // });
       // this.destinationAccountList = x[0].accountNumber;
       // this.sourceAccountList = x;
     });
+  }
+
+  // compareArray(arr:any){
+  // console.log(arr);
+
+  // }
+  onDestinationAccountNumberChanged($event) {
+    this.sourceAccountList = [...this.accountList];
+    const index = this.sourceAccountList.indexOf($event.value, 0);
+    if (index == -1)
+      return;
+
+    this.sourceAccountList.splice(index, 1);
+  }
+
+  onSourceAccountNumberChanged($event) {
+    this.destinationAccountList = [...this.accountList];
+    const index = this.destinationAccountList.indexOf($event.value, 0);
+    if (index == -1)
+      return;
+
+    this.destinationAccountList.splice(index, 1);
   }
 }

@@ -9,7 +9,7 @@ interface ILayout {
   providedIn: "root"
 })
 export class GlobalService {
-  // isloggededIn = false;
+  isloggededIn = false;
 
   private pageTitleSource = new Subject<ILayout>();
   pageTitle$ = this.pageTitleSource.asObservable();
@@ -20,5 +20,11 @@ export class GlobalService {
     setTimeout(() => {
       this.pageTitleSource.next(layout);
     });
+  }
+
+
+  loggedIn(value:boolean){
+    this.isloggededIn=value;
+
   }
 }

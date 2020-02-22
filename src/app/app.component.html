@@ -28,10 +28,11 @@
       </div>
 
       <div class="toolbar-row toolbar-login" >
-        <button mat-button  (click)="login()">Login</button>
+        <button mat-button  *ngIf="!isLoggedIn" (click)="login()">Login</button>
+        <button mat-button [matMenuTriggerFor]="menu" *ngIf="!isLoggedIn">{{email}}</button>
 
         <mat-menu #menu="matMenu">
-
+          <button mat-menu-item (click)="logout()" >Logout</button>
         </mat-menu>
       </div>
     </div>
@@ -39,7 +40,7 @@
 
 
   <mat-sidenav-container fullScreen class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewPort="true" [attr.role]="smallScreen ? 'dialog' : 'navigation'"
+    <mat-sidenav  #drawer class="sidenav" fixedInViewPort="true" [attr.role]="smallScreen ? 'dialog' : 'navigation'"
       [mode]="smallScreen? 'over': 'side'" [opened]="true">
       <mat-nav-list>
         <a  mat-list-item routerLink="/account-list">Account </a>

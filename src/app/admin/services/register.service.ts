@@ -27,8 +27,8 @@ export class RegisterService {
   }
 
   public getUser() {
-    const user: string = localStorage.getItem("ni-user") || "";
-    return { users:JSON.parse( user )};
+    const user: string = localStorage.getItem("ni-user");
+    return (JSON.parse(user));
   }
   public clearUser() {
     localStorage.removeItem("ni-user");
@@ -38,11 +38,13 @@ export class RegisterService {
   isLoggedIn() {
     let result = false;
     const user = localStorage.getItem("ni-user");
+    console.log(user,'user');
     if (user) {
-      this.loggedIn.next(user);
+      // this.loggedIn.next(user);
       result = true;
     } else {
-      this.clearUser();
+      result=false;
+      // this.clearUser();
     }
     return result;
   }
