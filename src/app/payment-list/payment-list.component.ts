@@ -37,7 +37,6 @@ export class PaymentListComponent implements OnInit {
 
   loadData() {
     this.paymentService.getAllPayments().subscribe((x: any) => {
-      console.log("details", x);
       this.dataSource = x;
     });
   }

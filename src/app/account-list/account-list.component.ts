@@ -35,7 +35,6 @@ export class AccountListComponent implements OnInit {
 
   loadData() {
     this.accountService.getAllAccount().subscribe((x: any) => {
-      console.log("get all accounts", x);
       this.dataSource = x;
     });
   }

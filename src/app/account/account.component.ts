@@ -26,24 +26,11 @@ export class AccountComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private globalService:GlobalService
   ) {
-    // this.accountService.getAllAccount().subscribe((x:any)=>{console.log('all Accounts',x);})
-    // this.accountService.getAccountDetailsById(this.accountId).subscribe((x: any): any=>{
-    //   console.log('details of account by Id',x);
-    // });
     this.globalService.setLayout({ allowFooter: true, pageTitle: 'Create Account/Details' })
   }
 
   ngOnInit() {
-    // this.accountService.getAllAccount().subscribe((x: any) => {
-    //   console.log("all Accounts", x, "0::", x[0].id);
-    //   console.log("length", x.length);
-    //   x.forEach(element => {
-    //     console.log("element", element,'Name:',element.accountHolderName);
-    //   });
-    //   this.accountId = x[0].id;
-    // });
     this.activatedRoute.params.subscribe(params => {
-      console.log('params',params);
       this.accountId = params['id'] ? params['id'] : undefined;
     if (this.accountId) {
       this.accountForm = new FormBuilder().group({
@@ -58,7 +45,6 @@ export class AccountComponent implements OnInit {
       this.accountService
         .getAccountDetailsById(this.accountId)
         .subscribe((x: any): any => {
-          console.log("details of account by Id", x);
           this.accountForm.controls["accountDescription"].setValue(
             x.accountDescription
 
@@ -92,7 +78,6 @@ export class AccountComponent implements OnInit {
   }
 
   onSubmit({ value, valid }: { value: any; valid: boolean }) {
-    console.log(value);
     if (valid) {
       // if (!this.accountId) {
       this.accountService
@@ -103,7 +88,6 @@ export class AccountComponent implements OnInit {
           value.accountNumber
         )
         .subscribe(x => {
-          console.log("accountDetails", x);
           this.snackBar.open('Account Created Successfully!', undefined, {duration: 2000});
           this.router.navigate(['/account-list']);
         });

@@ -27,12 +27,7 @@ export class CurrencyComponent implements OnInit {
       console.log("list", this.lists);
     });
 
-    // this.loadData();
   }
 
-  // loadData() {
-  //   this.currencyService.getCurrency().subscribe((x: any) => {
-  //     console.log("currency", x);
-  //   });
-  // }
+
 }

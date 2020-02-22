@@ -45,15 +45,8 @@ export class LoginComponent implements OnInit {
     const user: any = [];
     user.push(this.registerService.getUser());
     this.userDetail.push(user[0]);
-    console.log('userDetails',this.userDetail);
     if (valid) {
-      if (
-        // value=this.userDetail
-        // value.email === this.userDetail[0][0] &&
-        // value.password === this.userDetail[0][1]
-        value.email === this.userDetail[0][0] &&
-        value.password === this.userDetail[0][1]
-      ) {
+      if ( value.email === this.userDetail[0][0] && value.password === this.userDetail[0][1] ) {
         this.snackBar.open("User logged in sucessfully", null, {
           duration: 2000
         });

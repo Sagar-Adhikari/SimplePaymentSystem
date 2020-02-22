@@ -51,10 +51,6 @@ export class RegisterComponent implements OnInit {
     });
     this.firstName.nativeElement.focus();
   }
-
-  // resolved(captchaResponse: string) {
-  //   console.log(`Resolved captcha with response ${captchaResponse}`)
-  // }
   onSubmit({ value, valid }: { value: any; valid: boolean }) {
     console.log(value);
     if (valid) {
