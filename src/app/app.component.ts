@@ -48,18 +48,29 @@ export class AppComponent {
     // this.router.navigate(["/admin/login"]);
     if (!this.registerService.isLoggedIn) {
       this.router.navigate(["/account-list"]);
-      this.isLoggedIn = true;
+      // this.isLoggedIn = true;
     } else {
       this.router.navigate(["/admin/login"]);
     }
   }
   logout() {
+    window.location.reload();
+    // this.isLoggedIn=false;
     this.registerService.clearUser();
     this.router.navigate(["/admin/login"]);
   }
 
   isLoggedInUser() {
     const user = localStorage.getItem("ni-user");
-    console.log("localstorage", user);
+    const users = JSON.parse(user);
+    // console.log('length',user.length);
+    if (users) {
+      this.isLoggedIn = true;
+      // return true;
+    } else {
+      this.isLoggedIn = false;
+
+      this.router.navigate(["/admin/login"]);
+    }
   }
 }

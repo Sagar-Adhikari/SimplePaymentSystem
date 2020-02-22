@@ -5,7 +5,7 @@
 <mat-toolbar color="primary" class="app-toolbar">
     <div style="display: flex; flex-direction: row; width: 100%;">
 
-      <img class="logo" [src]="'../assets/payment.png'" alt="logo" (click)="isClickedMenu? drawer.toggle(): undefined" />
+      <img class="logo" [src]="'../assets/payment.png'" alt="logo" (click)="isLoggedIn? drawer.toggle(): undefined" />
 
       <div class="toolbar-row" >
         <span style="font-size: 22px;">Simple Payment System</span>
@@ -26,13 +26,11 @@
 
 
       </div>
-
       <div class="toolbar-row toolbar-login" >
         <button mat-button  *ngIf="!isLoggedIn" (click)="login()">Login</button>
-        <button mat-button [matMenuTriggerFor]="menu" *ngIf="!isLoggedIn">{{email}}</button>
-
+        <button mat-button *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" >logout</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()" >Logout</button>
+          <button  mat-menu-item (click)="logout()" >Logout</button>
         </mat-menu>
       </div>
     </div>
@@ -41,15 +39,15 @@
 
   <mat-sidenav-container fullScreen class="sidenav-container">
     <mat-sidenav  #drawer class="sidenav" fixedInViewPort="true" [attr.role]="smallScreen ? 'dialog' : 'navigation'"
-      [mode]="smallScreen? 'over': 'side'" [opened]="true">
+      [mode]="smallScreen? 'over': 'side'" [opened]="isLoggedIn">
       <mat-nav-list>
-        <a  mat-list-item routerLink="/account-list">Account </a>
+        <a *ngIf="isLoggedIn" mat-list-item routerLink="/account-list">Account </a>
         <mat-divider ></mat-divider>
-        <a   mat-list-item routerLink="/currency">Currency</a>
+        <a *ngIf="isLoggedIn"  mat-list-item routerLink="/currency">Currency</a>
       </mat-nav-list>
       <mat-divider ></mat-divider>
       <mat-nav-list>
-        <a mat-list-item routerLink="/payment-list">Payment Stystem</a>
+        <a *ngIf="isLoggedIn" mat-list-item routerLink="/payment-list">Payment Stystem</a>
 
       </mat-nav-list>
       <mat-divider></mat-divider>
