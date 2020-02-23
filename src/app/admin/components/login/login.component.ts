@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit({ value, valid }: { value: any; valid: boolean }) {
-    debugger;
     const user: any = [];
     user.push(this.registerService.getUser());
     this.userDetail.push(user[0]);
@@ -50,7 +49,14 @@ export class LoginComponent implements OnInit {
         this.snackBar.open("User logged in sucessfully", null, {
           duration: 2000
         });
+        // this.router.navigate(["/account-list"]);
+        setTimeout(() => {
+        window.location.reload();
+          
+        }, 1);
         this.router.navigate(["/account-list"]);
+
+        
       }
     }
     else {
