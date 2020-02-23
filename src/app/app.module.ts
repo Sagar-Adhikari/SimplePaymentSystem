@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,9 +28,9 @@ import { LoginComponent } from './admin/components/login/login.component';
     PaymentComponent,
     AccountListComponent,
     PaymentListComponent,
-    // LoginComponent
+
   ],
-  imports: [
+  imports: [AdminModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

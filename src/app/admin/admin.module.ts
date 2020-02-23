@@ -9,9 +9,12 @@ import { RegisterComponent } from './components/register/register.component';
 // import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 // import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [
+    LoginComponent,
+   RegisterComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -34,6 +37,7 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
      RecaptchaModule.forRoot(),
      RecaptchaFormsModule,
   ],
+  providers: [],
   exports:[LoginComponent]
 })
 export class AdminModule { }

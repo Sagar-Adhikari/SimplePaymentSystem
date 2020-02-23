@@ -29,14 +29,6 @@ export class AppComponent {
     private registerService: RegisterService
   ) {
     this.isLoggedInUser();
-    // const arr = [];
-    // arr.push(this.registerService.getUser());
-    // console.log("arrd", arr);
-    // this.email = arr[0][0];
-    // if(this.registerService.isLoggedIn()){
-    //    this.email = arr[0][0];
-    // };
-
     this.globalService.pageTitle$.subscribe((x: any) => {
       console.log("page title", x);
       this.pageTitle = x.pageTitle;
@@ -45,17 +37,15 @@ export class AppComponent {
   }
 
   login() {
-    // this.router.navigate(["/admin/login"]);
+    window.location.reload();
     if (!this.registerService.isLoggedIn) {
       this.router.navigate(["/account-list"]);
-      // this.isLoggedIn = true;
     } else {
       this.router.navigate(["/admin/login"]);
     }
   }
   logout() {
     window.location.reload();
-    // this.isLoggedIn=false;
     this.registerService.clearUser();
     this.router.navigate(["/admin/login"]);
   }
@@ -63,13 +53,10 @@ export class AppComponent {
   isLoggedInUser() {
     const user = localStorage.getItem("ni-user");
     const users = JSON.parse(user);
-    // console.log('length',user.length);
     if (users) {
       this.isLoggedIn = true;
-      // return true;
     } else {
       this.isLoggedIn = false;
-
       this.router.navigate(["/admin/login"]);
     }
   }

@@ -9,6 +9,7 @@ import { PaymentComponent } from "./payment/payment.component";
 
 const routes: Routes = [
   { path: "admin", loadChildren: "./admin/admin.module#AdminModule" },
+  {path:"",component:LoginComponent},
 
   {
     path: "account",
