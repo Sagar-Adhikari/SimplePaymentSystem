@@ -100,24 +100,27 @@ export class PaymentComponent implements OnInit {
 
   onSubmit({ value, valid }: { value: any; valid: boolean }) {
     if (valid) {
-      // if (!this.accountId) {
-      this.paymentService
-        .addPaymentDetails(
-          value.amount,
-          value.currencyCode,
-          value.destinationAccountNumber,
-          value.paymentDescription,
-          value.sourceAccountNumber
-        )
-        .subscribe(x => {
-          this.snackBar.open("Payment Created Sucessfully", undefined, {
-            duration: 2000
+      if (!this.paymentId) {
+        this.paymentService
+          .addPaymentDetails(
+            value.amount,
+            value.currencyCode,
+            value.destinationAccountNumber,
+            value.paymentDescription,
+            value.sourceAccountNumber
+          )
+          .subscribe(x => {
+            this.snackBar.open("Payment Created Sucessfully", undefined, {
+              duration: 2000
+            });
+            this.router.navigate(["/payment-list"]);
           });
-          this.router.navigate(["/payment-list"]);
-        });
-
-      // }
+      }
     }
+    setTimeout(() => {
+      window.location.reload();
+    }, 1);
+    this.router.navigate(["/payment-list"]);
   }
 
   getCurrency() {
@@ -133,15 +136,13 @@ export class PaymentComponent implements OnInit {
       });
       this.sourceAccountList = [...this.accountList];
       this.destinationAccountList = [...this.accountList];
-
     });
   }
 
   onDestinationAccountNumberChanged($event) {
     this.sourceAccountList = [...this.accountList];
     const index = this.sourceAccountList.indexOf($event.value, 0);
-    if (index == -1)
-      return;
+    if (index == -1) return;
 
     this.sourceAccountList.splice(index, 1);
   }
@@ -149,8 +150,7 @@ export class PaymentComponent implements OnInit {
   onSourceAccountNumberChanged($event) {
     this.destinationAccountList = [...this.accountList];
     const index = this.destinationAccountList.indexOf($event.value, 0);
-    if (index == -1)
-      return;
+    if (index == -1) return;
 
     this.destinationAccountList.splice(index, 1);
   }
