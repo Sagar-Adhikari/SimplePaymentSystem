@@ -52,7 +52,6 @@ export class RegisterComponent implements OnInit {
     this.firstName.nativeElement.focus();
   }
   onSubmit({ value, valid }: { value: any; valid: boolean }) {
-    console.log(value);
     if (valid) {
       const arr = [];
       arr.push(value.email, value.password);

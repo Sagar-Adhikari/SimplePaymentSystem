@@ -22,12 +22,7 @@ export class CurrencyComponent implements OnInit {
 
   ngOnInit() {
     this.currencyService.getCurrency().subscribe((x: any) => {
-      console.log("currency", x);
       this.lists = x;
-      console.log("list", this.lists);
     });
-
   }
-
-
 }

@@ -38,7 +38,6 @@ export class RegisterService {
   isLoggedIn() {
     let result = false;
     const user = localStorage.getItem("ni-user");
-    console.log(user,'user');
     if (user) {
       // this.loggedIn.next(user);
       result = true;

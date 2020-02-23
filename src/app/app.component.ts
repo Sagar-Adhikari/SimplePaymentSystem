@@ -30,7 +30,6 @@ export class AppComponent {
   ) {
     this.isLoggedInUser();
     this.globalService.pageTitle$.subscribe((x: any) => {
-      console.log("page title", x);
       this.pageTitle = x.pageTitle;
       this.allowFooter = x.allowFooter;
     });

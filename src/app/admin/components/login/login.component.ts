@@ -16,14 +16,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   currentURL: any = "assets/login.png";
   private userDetail = [];
-
   constructor(
     private globalService: GlobalService,
     private registerService: RegisterService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
-
   ngOnInit() {
     this.loginForm = new FormBuilder().group({
       email: ["", Validators.compose([Validators.required, Validators.email])],
@@ -49,14 +47,11 @@ export class LoginComponent implements OnInit {
         this.snackBar.open("User logged in sucessfully", null, {
           duration: 2000
         });
-        // this.router.navigate(["/account-list"]);
         setTimeout(() => {
         window.location.reload();
-          
+
         }, 1);
         this.router.navigate(["/account-list"]);
-
-        
       }
     }
     else {
